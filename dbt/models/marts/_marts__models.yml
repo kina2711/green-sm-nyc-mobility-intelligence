@@ -1,0 +1,113 @@
+version: 2
+
+models:
+  - name: dim_zone
+    description: "Grain: one TLC taxi zone."
+    columns:
+      - name: zone_id
+        data_tests: [not_null, unique]
+      - name: borough
+        data_tests: [not_null]
+
+  - name: dim_service
+    description: "Grain: one service and operator combination."
+    columns:
+      - name: service_key
+        data_tests: [not_null, unique]
+      - name: operator
+        data_tests: [not_null]
+
+  - name: dim_date
+    description: "Grain: one calendar date across the observed source range."
+    columns:
+      - name: date_key
+        data_tests: [not_null, unique]
+
+  - name: fct_trips
+    description: "Grain: one valid observed completed trip."
+    columns:
+      - name: trip_id
+        data_tests:
+          - not_null:
+              config:
+                tags: [sample_only]
+          - unique:
+              config:
+                tags: [sample_only]
+      - name: service_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_service')
+                field: service_key
+      - name: pickup_zone_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_zone')
+                field: zone_id
+      - name: date_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+  - name: mart_market_overview
+    description: "Grain: one month, pickup borough, and operator."
+    columns:
+      - name: market_grain_key
+        description: Stable hash of the declared mart grain.
+        data_tests: [not_null, unique]
+      - name: observed_fare
+        description: Additive fare numerator used for safe filtered rollups.
+      - name: fare_trip_count
+        description: Additive count of trips with a non-null observed fare.
+      - name: paid_miles
+        description: Additive positive trip miles used as the fare-per-mile denominator.
+      - name: completed_trip_share
+        description: Operator completed trips divided by borough-month completed trips.
+        data_tests: [not_null]
+
+  - name: mart_fare_positioning
+    description: "Grain: one month and operator. Weighted fare metrics at trip grain."
+    columns:
+      - name: fare_grain_key
+        description: Stable hash of month and operator.
+        data_tests: [not_null, unique]
+      - name: avg_observed_fare
+        description: Observed fare divided by trips with a non-null fare.
+        data_tests: [not_null]
+
+  - name: mart_hourly_demand
+    description: "Grain: one pickup zone, day of week, and hour. Completed-trip activity only."
+    columns:
+      - name: demand_grain_key
+        description: Stable hash of pickup zone, weekday, and hour.
+        data_tests: [not_null, unique]
+      - name: zone_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_zone')
+                field: zone_id
+
+  - name: mart_market_concentration
+    description: "Grain: one year. HHI based on observed completed-trip operator shares."
+    columns:
+      - name: pickup_year
+        data_tests: [not_null, unique]
+      - name: completed_trip_hhi
+        description: Sum of squared observed operator shares multiplied by 10,000.
+        data_tests: [not_null]
+
+  - name: mart_zone_opportunity
+    description: >
+      Grain: one zone in the latest analysis year. Transparent ranking heuristic;
+      not profitability, unmet demand, or automated fleet optimization.
+    columns:
+      - name: zone_id
+        data_tests: [not_null, unique]
+      - name: opportunity_score
+        description: Weighted 0–100 percentile heuristic for research prioritization.
+        data_tests: [not_null]

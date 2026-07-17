@@ -1,0 +1,12 @@
+{
+  "data": [
+    {
+      "loaded_at": "2026-07-17T08:58:16.072395",
+      "row_count": 843752700,
+      "source_file_count": 73,
+      "source_mode": "local"
+    }
+  ],
+  "row_count": 1,
+  "schema_version": "1.0.0"
+}

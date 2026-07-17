@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+      - name: Install locked dependencies
+        run: uv sync --frozen --all-groups
+      - name: Build sample pipeline
+        run: uv run python scripts/run_pipeline.py --mode sample --manifest artifacts/pipeline.json
+      - name: Validate Python
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+          uv run pytest
+      - name: Validate dashboard JavaScript
+        run: node --check dashboard/app.js
+      - name: Commit refreshed data metadata
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "kina2711"
+          git config user.email "183811251+kina2711@users.noreply.github.com"
+          git add data/ README.md
+          if git diff --staged --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          today=$(date -u +%Y-%m-%d)
+          git commit -m "chore(data): ELT pipeline run ${today} [skip ci]"
+          git push
+      - name: Upload dbt and pipeline evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-evidence
+          path: |
+            artifacts/pipeline.json
+            dbt/target/run_results.json
+            dbt/target/manifest.json
+          if-no-files-found: warn
+          retention-days: 7

@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: stg_tlc__yellow_trips
+    description: "Grain: one valid observed Yellow Taxi completed trip."
+    columns:
+      - name: trip_id
+        data_tests:
+          - not_null:
+              config:
+                tags: [sample_only]
+          - unique:
+              config:
+                tags: [sample_only]
+      - name: operator
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["Yellow Taxi"]
+      - name: pickup_zone_id
+        data_tests: [not_null]
+      - name: trip_minutes
+        data_tests: [not_null]
+
+  - name: stg_tlc__fhvhv_trips
+    description: "Grain: one valid observed High Volume FHV completed trip."
+    columns:
+      - name: trip_id
+        data_tests:
+          - not_null:
+              config:
+                tags: [sample_only]
+          - unique:
+              config:
+                tags: [sample_only]
+      - name: operator
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["Uber", "Lyft", "Juno", "Via", "Other HVFHS"]
+      - name: pickup_zone_id
+        data_tests: [not_null]
+      - name: total_amount
+        data_tests: [not_null]
+
+  - name: stg_tlc__taxi_zones
+    description: "Grain: one TLC taxi zone."
+    columns:
+      - name: zone_id
+        data_tests: [not_null, unique]
+      - name: borough
+        data_tests: [not_null]
+
+  - name: stg_tlc__pipeline_metadata
+    description: "Grain: one current raw-load execution."
+    columns:
+      - name: data_mode
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["sample", "local"]
+      - name: loaded_at_utc
+        data_tests: [not_null]

@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: tlc_raw
+    schema: raw
+    description: >
+      Raw NYC TLC-shaped inputs. In CI these are deterministic synthetic fixtures;
+      in local mode they are views over official NYC TLC Parquet files.
+    tables:
+      - name: yellow_trips
+        description: Raw Yellow Taxi completed-trip records.
+      - name: fhvhv_trips
+        description: Raw High Volume FHV completed-trip records.
+      - name: taxi_zones
+        description: TLC taxi-zone lookup.
+      - name: pipeline_metadata
+        description: One-row load metadata for mode and freshness reporting.
+

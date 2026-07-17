@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="NYC mobility market intelligence built from reproducible analytics marts." />
+    <title>Green SM — NYC Mobility Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+    <script src="app.js" type="module"></script>
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#overview" aria-label="Green SM Mobility Intelligence home">
+        <span class="brand-mark">G</span><span>GREEN SM <b>/ NYC</b></span>
+      </a>
+      <nav aria-label="Dashboard sections">
+        <a href="#market">Market</a><a href="#zones">Zones</a><a href="#patterns">Patterns</a><a href="#method">Method</a>
+      </nav>
+      <span class="status"><i></i> ANALYTICS MARTS</span>
+    </header>
+
+    <main>
+      <section class="hero" id="overview">
+        <div class="eyebrow">MARKET ENTRY ANALYTICS / OBSERVED ACTIVITY</div>
+        <h1>NYC moves in patterns.<br /><em>We make them legible.</em></h1>
+        <p class="hero-copy">A decision-support view of completed-trip activity, fare positioning and zone signals for a hypothetical electric ride-hailing entrant.</p>
+        <div class="scope-note"><span>DATA SCOPE</span><strong id="period-label">Loading…</strong><small id="source-mode">Preparing mart contracts</small></div>
+      </section>
+
+      <section class="kpi-grid" aria-label="Market summary">
+        <article><span>Completed trips</span><strong id="kpi-trips">—</strong><small>observed records</small></article>
+        <article><span>Active pickup zones</span><strong id="kpi-zones">—</strong><small>in selected scope</small></article>
+        <article><span>Avg observed fare</span><strong id="kpi-fare">—</strong><small>not a quoted price</small></article>
+        <article><span>Observed operators</span><strong id="kpi-operators">—</strong><small>TLC service groups</small></article>
+      </section>
+
+      <section class="panel-section" id="market">
+        <div class="section-heading">
+          <div><span class="section-no">01</span><p>MARKET STRUCTURE</p><h2>Activity and fare position</h2></div>
+          <div class="filters"><label>Year<select id="year-filter" aria-label="Filter year"></select></label><label>Borough<select id="borough-filter" aria-label="Filter borough"></select></label><label>Service<select id="service-filter" aria-label="Filter service"></select></label></div>
+        </div>
+        <div class="chart-grid">
+          <article class="chart-card wide"><header><div><span>COMPLETED-TRIP ACTIVITY</span><h3>Monthly operator volume</h3></div><small>Count of completed trips</small></header><div class="chart-wrap"><canvas id="market-chart"></canvas></div></article>
+          <article class="chart-card"><header><div><span>FARE OBSERVATION</span><h3>Weighted average fare</h3></div><small>USD / completed fare record</small></header><div class="chart-wrap"><canvas id="fare-chart"></canvas></div></article>
+        </div>
+      </section>
+
+      <section class="panel-section" id="zones">
+        <div class="section-heading"><div><span class="section-no">02</span><p>ZONE PRIORITIZATION</p><h2>Where signals converge</h2></div><p class="section-copy">A transparent heuristic ranks observed activity, year-over-year growth, fare level and airport relevance. It is not a profitability or unmet-demand model.</p></div>
+        <div class="zone-layout">
+          <article class="chart-card"><header><div><span>TOP SIGNALS</span><h3>Opportunity score</h3></div><small>0–100 heuristic</small></header><div class="chart-wrap tall"><canvas id="zone-chart"></canvas></div></article>
+          <article class="score-card"><span>SELECTED ZONE</span><h3 id="selected-zone">—</h3><strong id="selected-score">—</strong><small>composite score</small><div id="score-components" class="components"></div></article>
+        </div>
+        <div class="table-shell"><table><thead><tr><th>Rank</th><th>Zone</th><th>Borough</th><th>Trips</th><th>YoY</th><th>Fare</th><th>Score</th></tr></thead><tbody id="zone-table"></tbody></table></div>
+      </section>
+
+      <section class="panel-section" id="patterns">
+        <div class="section-heading"><div><span class="section-no">03</span><p>OPERATING PATTERNS</p><h2>When completed trips occur</h2></div><p class="section-copy">Average completed trips per observed day, aggregated across pickup zones. Darker cells indicate more observed activity.</p></div>
+        <article class="heat-card"><div class="heat-legend"><span>LOW</span><i></i><i></i><i></i><i></i><i></i><span>HIGH</span></div><div id="heatmap" class="heatmap" role="img" aria-label="Hourly completed-trip heatmap"></div></article>
+      </section>
+
+      <section class="method" id="method">
+        <div><span class="section-no">04</span><p>METHODOLOGY</p><h2>Built to be questioned.</h2></div>
+        <div class="method-grid">
+          <article><span>01 / SCOPE</span><h3>Observed facts</h3><p>All KPIs describe completed TLC-shaped trip records. They do not represent requests, driver supply, cancellations or unmet demand.</p></article>
+          <article><span>02 / SCORE</span><h3>Visible assumptions</h3><p>Zone score = 35% activity + 30% growth + 20% fare + 15% airport relevance. Each component uses percentile rank.</p></article>
+          <article><span>03 / REPRODUCIBILITY</span><h3>Mart-backed UI</h3><p>Python exports versioned JSON contracts from tested dbt marts. The JavaScript layer contains no KPI constants.</p></article>
+        </div>
+        <aside><strong>Portfolio sample notice</strong><p id="freshness-note">Loading data provenance…</p></aside>
+      </section>
+    </main>
+    <footer><span>GREEN SM NYC MOBILITY INTELLIGENCE</span><span>DATA ANALYTICS ENGINEERING PORTFOLIO</span><span id="schema-version">CONTRACT —</span></footer>
+    <div id="error-banner" class="error-banner" role="alert" hidden></div>
+  </body>
+</html>

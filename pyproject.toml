@@ -1,0 +1,39 @@
+[project]
+name = "green-sm-nyc-mobility-intelligence"
+version = "0.1.0"
+description = "Analytics engineering and market intelligence for a hypothetical electric ride-hailing entry in NYC."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "dbt-core>=1.9,<2.0",
+    "dbt-duckdb>=1.9,<2.0",
+    "duckdb>=1.2,<2.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3,<9.0",
+    "ruff>=0.11,<1.0",
+]
+
+[project.scripts]
+mobility-intel = "green_sm_nyc.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/green_sm_nyc"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
