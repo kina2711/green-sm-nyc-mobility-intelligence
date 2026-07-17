@@ -1,16 +1,15 @@
 # Green SM NYC Mobility Intelligence
 
 <p align="left">
-  <a href="https://www.python.org/" title="Python"><img src="https://cdn.simpleicons.org/python" alt="Python" height="38"></a>&nbsp;
-  <a href="https://duckdb.org/" title="DuckDB"><img src="https://cdn.simpleicons.org/duckdb" alt="DuckDB" height="38"></a>&nbsp;
-  <a href="https://www.getdbt.com/" title="dbt Core"><img src="https://avatars.githubusercontent.com/u/54212428?s=96&amp;v=4" alt="dbt Core" height="38"></a>&nbsp;
-  <a href="https://developer.mozilla.org/docs/Web/HTML" title="HTML5"><img src="https://cdn.simpleicons.org/html5" alt="HTML5" height="38"></a>&nbsp;
-  <a href="https://developer.mozilla.org/docs/Web/CSS" title="CSS"><img src="https://cdn.simpleicons.org/css" alt="CSS" height="38"></a>&nbsp;
-  <a href="https://developer.mozilla.org/docs/Web/JavaScript" title="JavaScript"><img src="https://cdn.simpleicons.org/javascript" alt="JavaScript" height="38"></a>&nbsp;
-  <a href="https://www.chartjs.org/" title="Chart.js"><img src="https://cdn.simpleicons.org/chartdotjs" alt="Chart.js" height="38"></a>&nbsp;
-  <a href="https://docs.pytest.org/" title="pytest"><img src="https://cdn.simpleicons.org/pytest" alt="pytest" height="38"></a>&nbsp;
-  <a href="https://docs.astral.sh/ruff/" title="Ruff"><img src="https://cdn.simpleicons.org/ruff" alt="Ruff" height="38"></a>&nbsp;
-  <a href="https://docs.github.com/actions" title="GitHub Actions"><img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" height="38"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/PYTHON-3.12%2B-3776AB?style=for-the-badge&amp;logo=python&amp;logoColor=white&amp;labelColor=4B4B4B" alt="Python 3.12+"></a>
+  <a href="https://duckdb.org/"><img src="https://img.shields.io/badge/DUCKDB-SQL%20%2F%20OLAP-FFC61C?style=for-the-badge&amp;logo=duckdb&amp;logoColor=white&amp;labelColor=4B4B4B" alt="DuckDB SQL and OLAP"></a>
+  <a href="https://www.getdbt.com/"><img src="https://img.shields.io/badge/DBT-CORE-FF694B?style=for-the-badge&amp;logo=dbt&amp;logoColor=white&amp;labelColor=4B4B4B" alt="dbt Core"></a>
+  <a href="https://developer.mozilla.org/docs/Web/HTML"><img src="https://img.shields.io/badge/HTML%20%2F%20CSS-STATIC%20WEB-E34F26?style=for-the-badge&amp;logo=html5&amp;logoColor=white&amp;labelColor=4B4B4B" alt="HTML and CSS static web"></a>
+  <a href="https://developer.mozilla.org/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JAVASCRIPT-DASHBOARD-F7DF1E?style=for-the-badge&amp;logo=javascript&amp;logoColor=white&amp;labelColor=4B4B4B" alt="JavaScript dashboard"></a>
+  <a href="https://www.chartjs.org/"><img src="https://img.shields.io/badge/CHART.JS-VISUALS-FF6384?style=for-the-badge&amp;logo=chartdotjs&amp;logoColor=white&amp;labelColor=4B4B4B" alt="Chart.js visuals"></a>
+  <a href="https://docs.pytest.org/"><img src="https://img.shields.io/badge/PYTEST-TESTS-0A9EDC?style=for-the-badge&amp;logo=pytest&amp;logoColor=white&amp;labelColor=4B4B4B" alt="pytest tests"></a>
+  <a href="https://docs.astral.sh/ruff/"><img src="https://img.shields.io/badge/RUFF-LINT-D7FF64?style=for-the-badge&amp;logo=ruff&amp;logoColor=white&amp;labelColor=4B4B4B" alt="Ruff lint"></a>
+  <a href="https://docs.github.com/actions"><img src="https://img.shields.io/badge/GITHUB%20ACTIONS-CI%20%2F%20CD-2088FF?style=for-the-badge&amp;logo=githubactions&amp;logoColor=white&amp;labelColor=4B4B4B" alt="GitHub Actions CI/CD"></a>
 </p>
 
 **Portfolio focus:** Analytics Engineering · Data Analysis · Market Intelligence · Decision Support  
