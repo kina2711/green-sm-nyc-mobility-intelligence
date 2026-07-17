@@ -1,11 +1,25 @@
 # Green SM NYC Mobility Intelligence
 
-**Tech stack:** Python 3.12 · DuckDB · dbt Core · SQL · HTML/CSS/JavaScript · Chart.js · pytest · Ruff · GitHub Actions  
+<p align="left">
+  <a href="https://www.python.org/" title="Python"><img src="https://cdn.simpleicons.org/python" alt="Python" height="38"></a>&nbsp;
+  <a href="https://duckdb.org/" title="DuckDB"><img src="https://cdn.simpleicons.org/duckdb" alt="DuckDB" height="38"></a>&nbsp;
+  <a href="https://www.getdbt.com/" title="dbt Core"><img src="https://avatars.githubusercontent.com/u/54212428?s=96&amp;v=4" alt="dbt Core" height="38"></a>&nbsp;
+  <a href="https://developer.mozilla.org/docs/Web/HTML" title="HTML5"><img src="https://cdn.simpleicons.org/html5" alt="HTML5" height="38"></a>&nbsp;
+  <a href="https://developer.mozilla.org/docs/Web/CSS" title="CSS"><img src="https://cdn.simpleicons.org/css" alt="CSS" height="38"></a>&nbsp;
+  <a href="https://developer.mozilla.org/docs/Web/JavaScript" title="JavaScript"><img src="https://cdn.simpleicons.org/javascript" alt="JavaScript" height="38"></a>&nbsp;
+  <a href="https://www.chartjs.org/" title="Chart.js"><img src="https://cdn.simpleicons.org/chartdotjs" alt="Chart.js" height="38"></a>&nbsp;
+  <a href="https://docs.pytest.org/" title="pytest"><img src="https://cdn.simpleicons.org/pytest" alt="pytest" height="38"></a>&nbsp;
+  <a href="https://docs.astral.sh/ruff/" title="Ruff"><img src="https://cdn.simpleicons.org/ruff" alt="Ruff" height="38"></a>&nbsp;
+  <a href="https://docs.github.com/actions" title="GitHub Actions"><img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" height="38"></a>
+</p>
+
 **Portfolio focus:** Analytics Engineering · Data Analysis · Market Intelligence · Decision Support  
 **Author:** Kien Thai  
 **License:** [MIT](LICENSE)
 
-![Green SM NYC Mobility Intelligence dashboard](docs/assets/dashboard-overview.png)
+[![Live Dashboard](https://img.shields.io/badge/LIVE_DASHBOARD-Open-9DFF20?style=for-the-badge&logo=github&logoColor=07110F)](https://kina2711.github.io/green-sm-nyc-mobility-intelligence/)
+
+[![Green SM NYC Mobility Intelligence dashboard](docs/assets/dashboard-overview.png)](https://kina2711.github.io/green-sm-nyc-mobility-intelligence/)
 
 My end-to-end analytics project converts **843.8 million official NYC TLC trip records** into market-entry evidence for a hypothetical electric ride-hailing entrant. I designed the project to connect business requirements, dimensional modeling, tested metrics, analytical storytelling, and a custom JavaScript dashboard.
 
